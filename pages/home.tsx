@@ -54,6 +54,7 @@ const values = [
 
 const home = () => {
     const [windowWidth, setWindowWidth] = useState<any>(null);
+    const [password , setPassword] = useState<string>('');
 
     useEffect(() => {
         // Initialiser la largeur de la fenêtre au rendu du composant
@@ -76,6 +77,19 @@ const home = () => {
         return (
             <div className='h-screen flex justify-center items-center p-8 text-center'>
                 Agrandi la taille de ton navigateur ou utilise un appareil plus grand pour afficher le contenu de la page
+            </div>
+        )
+    }
+
+    if (password !== 'tontonjeff'){
+        return (
+            <div className='h-screen flex justify-center items-center p-8 text-center'>
+                <input 
+                    type="password" 
+                    placeholder='Mot de passe'
+                    className='border-2 border-black p-2' 
+                    onChange={(e) => setPassword(e.target.value)}
+                />
             </div>
         )
     }
