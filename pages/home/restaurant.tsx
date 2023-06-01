@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import LogoWhite from '../public/logo_white.svg'
-import MenGiveFood from '../public/homme_qui_sert_a_manger.png'
-import WomenAtBill from '../public/femme_a_la_caisse.png'
-import SteakOnPlate from '../public/steack_on_plate.png'
-import WomanBigData from '../public/woman_bigdata.png'
-import ClientWithCoffee from '../public/client_with_cofee.png'
+import LogoWhite from '../../public/logo_white.svg'
+import MenGiveFood from '../../public/homme_qui_sert_a_manger.png'
+import WomenAtBill from '../../public/femme_a_la_caisse.png'
+import SteakOnPlate from '../../public/steack_on_plate.png'
+import WomanBigData from '../../public/woman_bigdata.png'
+import ClientWithCoffee from '../../public/client_with_cofee.png'
 import Image from 'next/image'
+import { Link } from 'react-scroll';
 import { FiCheckCircle, FiAward, FiShield, FiMapPin, FiUsers, FiUserCheck, FiCompass, FiZap } from 'react-icons/fi';
+import { useRouter } from 'next/router'
 
 const values = [
     {
@@ -54,7 +56,7 @@ const values = [
 
 const home = () => {
     const [windowWidth, setWindowWidth] = useState<any>(null);
-    const [password , setPassword] = useState<string>('');
+    const router = useRouter();
 
     useEffect(() => {
         // Initialiser la largeur de la fenêtre au rendu du composant
@@ -81,19 +83,6 @@ const home = () => {
         )
     }
 
-    if (password !== 'tontonjeff'){
-        return (
-            <div className='h-screen flex justify-center items-center p-8 text-center'>
-                <input 
-                    type="password" 
-                    placeholder='Mot de passe'
-                    className='border-2 border-black p-2' 
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-        )
-    }
-
     return (
         <div>
             <div 
@@ -115,7 +104,20 @@ const home = () => {
                             <h1 className='text-white text-7xl text-center font-extrabold'>Boostez votre restaurant avec notre <span className='text-primary'>programme de fidélité</span> innovant</h1>
                         </div>
                         <p className='max-w-5xl text-center text-4xl mt-8 text-white' >Gagnez en visibilité, fidélisez vos clients et augmentez vos revenus grâce à notre application de programme de fidélité unique et personnalisable.</p> 
-                        <button className='btn btn-secondary text-center mt-8 w-3xl btn-lg'><a href="#section1">Découvrir le concept</a></button>
+                        <div className='flex items-center gap-4'>
+                            <Link
+                                className='btn btn-secondary text-center mt-8 w-3xl btn-lg'
+                                activeClass="active"
+                                to="section1"
+                                spy={true}
+                                smooth={true}
+                                offset={0}
+                                duration={500}
+                            >
+                                Vous êtes restaurateur ?
+                            </Link>
+                            <button className='btn btn-primary text-center mt-8 w-3xl btn-lg' onClick={() => router.push("/home/gourmet")}>Vous êtes un gourmet ?</button>
+                        </div>
                     </div>
                 </div>
             </div>
